@@ -4,15 +4,12 @@ using System.Text;
 
 namespace TechoramaDemo.Messages
 {
-    public class CreateRoom
+    public class JoinConfirmed
     {
-        public CreateRoom(string roomName, string userName)
+        public JoinConfirmed(string roomName)
         {
             RoomName = roomName;
-            UserName = userName;
         }
-
-        public string UserName { get; }
 
         public string RoomName { get; }
     }

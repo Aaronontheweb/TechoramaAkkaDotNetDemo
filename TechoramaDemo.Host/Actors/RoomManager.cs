@@ -37,7 +37,9 @@ namespace TechoramaDemo.Host.Actors
                     var user = _users[Sender];
                     Publish(new SystemMsg($"{user} has left {_roomName}"));
                     _users.Remove(Sender);
-                    _receptionist.Tell(new LeftRoom(_roomName));
+                    var left = new LeftRoom(_roomName);
+                    _receptionist.Tell(left);
+                    Sender.Tell(left);
                     break;
                 case Terminated t: // client abruptly terminated
                     _users.Remove(t.ActorRef);

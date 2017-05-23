@@ -40,6 +40,7 @@ namespace TechoramaDemo.Host.Actors
                     {
                         _roomCounts[j.RoomName] = 1;
                     }
+                    Sender.Tell(new JoinConfirmed(j.RoomName), child);
                     break;
                 case JoinRoom j when !_roomCounts.ContainsKey(j.RoomName): // room doesn't exist
                     Sender.Tell(new Err($"room {j.RoomName} doesn't exist. Create it first!"));
@@ -49,7 +50,7 @@ namespace TechoramaDemo.Host.Actors
                     break;
                 case CreateRoom c:
                     _roomCounts[c.RoomName] = 0; // creates the room
-                    Self.Tell(new JoinRoom(c.RoomName, c.UserName)); // executes a join action for end-user
+                    Self.Tell(new JoinRoom(c.RoomName, c.UserName), Sender); // executes a join action for end-user
                     break;
                 default:
                     Unhandled(message);
