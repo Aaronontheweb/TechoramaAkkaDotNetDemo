@@ -52,6 +52,16 @@ namespace TechoramaDemo.Host.Actors
                     _roomCounts[c.RoomName] = 0; // creates the room
                     Self.Tell(new JoinRoom(c.RoomName, c.UserName), Sender); // executes a join action for end-user
                     break;
+                case LeftRoom l:
+                    if (_roomCounts.TryGetValue(l.RoomName, out var nextCount))
+                    {
+                        _roomCounts[l.RoomName] = nextCount - 1;
+                    }
+                    else
+                    {
+                        _roomCounts[l.RoomName] = 0;
+                    }
+                    break;
                 default:
                     Unhandled(message);
                     break;
