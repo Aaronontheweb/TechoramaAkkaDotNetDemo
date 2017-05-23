@@ -6,10 +6,13 @@ namespace TechoramaDemo.Messages
 {
     public class CreateRoom
     {
-        public CreateRoom(string roomName)
+        public CreateRoom(string userName, string roomName)
         {
             RoomName = roomName;
+            UserName = userName;
         }
+
+        public string UserName { get; }
 
         public string RoomName { get; }
     }

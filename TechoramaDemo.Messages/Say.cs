@@ -17,14 +17,7 @@ namespace TechoramaDemo.Messages
 
         public override string ToString()
         {
-            return $"{UserName}: {Msg}"
-        }
-    }
-
-    public class SystemMsg : Say
-    {
-        public SystemMsg(string msg) : base(string.Empty, msg)
-        {
+            return $"{UserName}: {Msg}";
         }
     }
 }
